@@ -75,17 +75,7 @@ export default function Navbar() {
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              style={{
-                background: "none", border: "none", cursor: "pointer",
-                padding: "0.5rem 1rem",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color: "#374151",
-                letterSpacing: "0.005em",
-                transition: "color 0.15s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#60A5FA")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#374151")}
+              className="bg-transparent border-none cursor-pointer px-4 py-2 text-[0.875rem] font-medium text-gray-700 tracking-wide transition-colors duration-150 hover:text-blue-400"
             >
               {l.label}
             </button>
@@ -103,9 +93,8 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden"
+          className="md:hidden bg-transparent border-none cursor-pointer p-2 text-gray-700 flex items-center justify-center"
           onClick={() => setMobileOpen((v) => !v)}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: "0.5rem", color: "#374151" }}
         >
           {mobileOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -120,16 +109,12 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-xl overflow-hidden"
           >
-            <div className="wrap" style={{ paddingBlock: "1.5rem", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <div className="wrap py-6 flex flex-col gap-1">
               {NAV.map((l) => (
                 <button
                   key={l.href}
                   onClick={() => { setMobileOpen(false); scrollTo(l.href); }}
-                  style={{
-                    textAlign: "left", background: "none", border: "none", cursor: "pointer",
-                    padding: "0.75rem 0", fontSize: "0.9375rem", fontWeight: 500, color: "#374151",
-                    borderBottom: "1px solid #F3F4F6",
-                  }}
+                  className="text-left bg-transparent border-none cursor-pointer py-3 px-2 text-[0.9375rem] font-medium text-gray-700 border-b border-gray-100 hover:text-blue-500 hover:bg-gray-50 transition-colors rounded-t-md"
                 >
                   {l.label}
                 </button>
