@@ -70,7 +70,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop nav */}
-        <nav style={{ display: "flex", gap: "0.25rem" }} className="hidden md:flex">
+        <nav className="hidden md:flex gap-1">
           {NAV.map((l) => (
             <button
               key={l.href}
