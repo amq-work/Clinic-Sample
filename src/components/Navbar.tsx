@@ -36,12 +36,12 @@ export default function Navbar() {
         top: 0, left: 0, right: 0,
         zIndex: 100,
         transition: "background 0.25s, border-color 0.25s",
-        background: scrolled
+        background: scrolled || mobileOpen
           ? "rgba(255,255,255,0.88)"
           : "transparent",
-        backdropFilter: scrolled ? "blur(24px) saturate(180%)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(24px) saturate(180%)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "1px solid transparent",
+        backdropFilter: scrolled || mobileOpen ? "blur(24px) saturate(180%)" : "none",
+        WebkitBackdropFilter: scrolled || mobileOpen ? "blur(24px) saturate(180%)" : "none",
+        borderBottom: scrolled || mobileOpen ? "1px solid rgba(0,0,0,0.07)" : "1px solid transparent",
       }}
     >
       <div className="wrap flex items-center justify-between h-16">
@@ -118,12 +118,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            style={{
-              background: "rgba(255,255,255,0.96)",
-              backdropFilter: "blur(20px)",
-              borderTop: "1px solid #E5E7EB",
-              overflow: "hidden",
-            }}
+            className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-t border-gray-200 shadow-xl overflow-hidden"
           >
             <div className="wrap" style={{ paddingBlock: "1.5rem", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
               {NAV.map((l) => (
@@ -141,8 +136,7 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => { setMobileOpen(false); scrollTo("#map"); }}
-                className="btn btn-blue"
-                style={{ marginTop: "1rem", justifyContent: "center" }}
+                className="btn btn-blue w-full mt-4 justify-center"
               >
                 Visit Us
               </button>
