@@ -44,7 +44,7 @@ export default function ContactSection() {
   return (
     <section id="contact" ref={ref} className="section" style={{ background: "transparent", position: "relative", zIndex: 1 }}>
       <div className="wrap">
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1.3fr", gap:"5rem", alignItems:"start" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20 items-start">
           {/* Info */}
           <div style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
             <div>

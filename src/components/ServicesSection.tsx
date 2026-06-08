@@ -37,7 +37,7 @@ export default function ServicesSection() {
 
 
         {/* Card grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem" }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {SERVICES.map(({ Icon, name, desc, duration, price }, i) => (
             <motion.div
               key={name}

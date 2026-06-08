@@ -17,8 +17,7 @@ export default function AboutSection() {
     <section id="about" ref={ref} className="section" style={{ background: "transparent", position: "relative", zIndex: 1 }}>
       <div className="wrap">
         <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}
-          className="grid-cols-1 md:grid-cols-2"
+          className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-20"
         >
           {/* ── LEFT — Doctor photo in glass frame ─────────────── */}
           <motion.div
@@ -41,7 +40,7 @@ export default function AboutSection() {
               }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/doctor.png"
+                src="./doctor.png"
                 alt="Dr. Asma Riaz — Chief Dental Officer at ClinicCare"
                 style={{ width: "100%", height: "420px", objectFit: "cover", display: "block" }}
               />

@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer style={{ background: "#080808", color: "#ffffff", position: "relative", zIndex: 1 }}>
       <div className="wrap" style={{ paddingBlock: "5rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: "3rem" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12">
           {/* Brand */}
           <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>

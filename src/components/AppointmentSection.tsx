@@ -87,7 +87,7 @@ export default function AppointmentSection() {
   return (
     <section id="appointment" ref={ref} className="section" style={{ background: "transparent", position: "relative", zIndex: 1 }}>
       <div className="wrap">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "5rem", alignItems: "start" }} className="grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-12 lg:gap-20">
 
           {/* ── LEFT — info ────────────────────────────────────── */}
           <div style={{ paddingTop: "0.5rem" }}>

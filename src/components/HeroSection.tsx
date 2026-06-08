@@ -73,24 +73,12 @@ export default function HeroSection() {
           {/* Stats row */}
           <motion.div
             {...fadeUp(0.4)}
-            style={{
-              display: "flex",
-              gap: "0",
-              paddingTop: "1.5rem",
-              marginTop: "0.5rem",
-              borderTop: "1px solid rgba(229,231,235,0.7)",
-              width: "100%",
-              justifyContent: "center",
-            }}
+            className="flex flex-wrap justify-center w-full pt-6 mt-2 border-t border-gray-200/70 gap-y-6"
           >
             {STATS.map((s, i) => (
               <div
                 key={s.label}
-                style={{
-                  flex: "0 0 auto",
-                  paddingInline: "2.5rem",
-                  borderRight: i < STATS.length - 1 ? "1px solid #E5E7EB" : "none",
-                }}
+                className={`px-4 sm:px-10 ${i < STATS.length - 1 ? 'border-r border-gray-200' : ''}`}
               >
                 <p style={{
                   fontSize: "1.5rem",
