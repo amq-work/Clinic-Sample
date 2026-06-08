@@ -1,26 +1,244 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
+/* ─────────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans:    var(--font-inter);
+  --font-heading: var(--font-jakarta);
+
+  --color-background:           #ffffff;
+  --color-foreground:           #080808;
+  --color-blue:                 #60A5FA;
+  --color-blue-mid:             #3B82F6;
+  --color-blue-deep:            #1D4ED8;
+  --color-blue-pale:            #EFF6FF;
+  --color-border:               #E5E7EB;
+  --color-muted:                #6B7280;
+  --color-surface:              #FAFAFA;
+
+  --color-primary:              #60A5FA;
+  --color-primary-foreground:   #ffffff;
+  --color-secondary:            #F9FAFB;
+  --color-secondary-foreground: #111827;
+  --color-muted-foreground:     #6B7280;
+  --color-card:                 #ffffff;
+  --color-card-foreground:      #080808;
+  --color-border-token:         #E5E7EB;
+  --color-ring:                 #60A5FA;
+  --color-destructive:          #EF4444;
+  --color-popover:              #ffffff;
+  --color-popover-foreground:   #080808;
+  --color-accent:               #EFF6FF;
+  --color-accent-foreground:    #1D4ED8;
+  --color-input:                #E5E7EB;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
+
+  body {
+    background: #ffffff;
+    color: #080808;
+    font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  ::selection { background: #BFDBFE; color: #1D4ED8; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #fff; }
+  ::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #60A5FA; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─────────────────────────────────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* ── Layout ──────────────────────────────────────────────────────────── */
+  .wrap {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 2rem;
+  }
+  .section    { padding-block: 7rem; }
+  .section-sm { padding-block: 5rem; }
+
+  /* ── Typography ──────────────────────────────────────────────────────── */
+  .display {
+    font-family: var(--font-jakarta), sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.035em;
+  }
+  .headline {
+    font-family: var(--font-jakarta), sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #60A5FA;
+  }
+  .body-lg {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #6B7280;
+  }
+
+  /* ── Gradient text ───────────────────────────────────────────────────── */
+  .text-grad {
+    background: linear-gradient(120deg, #60A5FA 0%, #3B82F6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Buttons — curved glass style ───────────────────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.875rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+    border-radius: 10px;          /* gentle curve */
+  }
+
+  /* Primary blue button — glass tint on top of blue */
+  .btn-blue {
+    background: linear-gradient(135deg, rgba(96,165,250,0.8) 0%, rgba(59,130,246,0.85) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-top: 1px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    box-shadow: 0 8px 24px rgba(59,130,246,0.25), inset 0 2px 4px rgba(255,255,255,0.3);
+    border-radius: 12px;
+  }
+  .btn-blue:hover {
+    background: linear-gradient(135deg, rgba(59,130,246,0.97) 0%, rgba(29,78,216,0.97) 100%);
+    box-shadow: 0 6px 24px rgba(96,165,250,0.38), inset 0 1px 0 rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+  }
+
+  /* Ghost button — glass frosted */
+  .btn-ghost {
+    background: rgba(255,255,255,0.35);
+    color: #374151;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-top: 1px solid rgba(255,255,255,0.8);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03), inset 0 2px 4px rgba(255,255,255,0.5);
+    border-radius: 12px;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(96,165,250,0.4);
+    color: #3B82F6;
+    background: rgba(239,246,255,0.7);
+  }
+
+  /* ── Glass cards — rounded, frosted ─────────────────────────────────── */
+  .glass {
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-top: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.03), inset 0 2px 6px rgba(255,255,255,0.4);
+    border-radius: 20px;
+  }
+
+  .glass-card {
+    background: rgba(255,255,255,0.45);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.5);
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.04), inset 0 2px 6px rgba(255,255,255,0.5);
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .glass-card:hover {
+    border-color: rgba(96,165,250,0.3);
+    background: rgba(255,255,255,0.82);
+    box-shadow: 0 8px 32px rgba(96,165,250,0.08);
+  }
+
+  /* ── Section tag chip ────────────────────────────────────────────────── */
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3B82F6;
+    border: 1px solid rgba(96,165,250,0.25);
+    background: rgba(239,246,255,0.75);
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── Form fields ─────────────────────────────────────────────────────── */
+  .field {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    color: #111827;
+    background: rgba(255,255,255,0.85);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field:focus {
+    border-color: #60A5FA;
+    box-shadow: 0 0 0 3px rgba(96,165,250,0.1);
+  }
+  .field::placeholder { color: #9CA3AF; }
+
+  .field-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
 }
